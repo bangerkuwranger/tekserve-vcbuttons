@@ -1,0 +1,21 @@
+/* path to the icon file should be relative to the css file where you place your css rules (this file) */
+.wpb_bootstrap_modals .wpb-content-layouts .wpb-layout-element-button .icon-wpb-repairstatus { background-image: url(icons/wrench.png); }
+ 
+/* .wpb_{shortcode_base} .wpb_element_wrapper selector can be used to add background image to VC shortcode block in the Visual Composer Editor working canvas */
+.wpb_repairstatus .wpb_element_wrapper { background-image: url(icons/wrench.png); }
+
+/* path to the icon file should be relative to the css file where you place your css rules (this file) */
+.wpb_bootstrap_modals .wpb-content-layouts .wpb-layout-element-button .icon-wpb-drawer { background-image: url(icons/drawericon.png); }
+ 
+/* .wpb_{shortcode_base} .wpb_element_wrapper selector can be used to add background image to VC shortcode block in the Visual Composer Editor working canvas */
+.wpb_drawer .wpb_element_wrapper { background-image: url(icons/drawericon.png); }
+
+/* path to the icon file should be relative to the css file where you place your css rules (this file) */
+.wpb_bootstrap_modals .wpb-content-layouts .wpb-layout-element-button .icon-wpb-sorttablepost { background-image: url(icons/postttableicon.png); }
+ 
+/* .wpb_{shortcode_base} .wpb_element_wrapper selector can be used to add background image to VC shortcode block in the Visual Composer Editor working canvas */
+.wpb_sorttablepost .wpb_element_wrapper { background-image: url(icons/posttableicon.png); }
+
+#whats-sro { display: none; text-align: left; font-size: 24px; font-weight: normal; }
+
+#whats-sro .sro-example { background-image: url(icons/sro.jpg); background-position: left; background-size: 100%; float: right; min-height: 185px; max-width: 48%; }

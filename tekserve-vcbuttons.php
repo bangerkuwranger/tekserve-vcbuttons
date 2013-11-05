@@ -37,14 +37,14 @@ return "<div id='status-title'><h2>Check Your Repair Status</h2></div><div id='s
 <li style='display: none'><p>The repair is done and has been picked up.</p></li>
 <li style='display: none'><p>The repair is done. It is ready to be picked up, if you have not made other arrangements.</p></li>
 </ul></li></ul></div><form class='status-front' id='status-front' method='get'><p><span class='label'>SRO#</span> <a href='javascript:showExampleSRO();'>What's this?</a></p>
-<div id='whats-sro' style='display: none; text-align: left; font-size: 16px; font-weight: normal;' ><div style='background-image: url(https://www.tekserve.com/media/wysiwyg/images/sroexample.jpg); background-position: left; background-size: 100%; float: right; min-height: 235px; width: 48%; min-width: 300px; max-width: 100%; margin-left: 1em; background-repeat: no-repeat;' class='sro-example'>&nbsp;</div>Your SRO # (Service Request Order) is the largest number on any repair receipt or invoice from Tekserve. The number is seven digits long and located in the upper right corner of your receipt as shown.</div>
+<div id='whats-sro' style='display: none; text-align: left; font-size: 16px; font-weight: normal;' ><div style='background-image: url(https://www.tekserve.com/media/wysiwyg/images/sroexample.jpg); background-position: left top; background-size: 100%; float: right; min-height: 235px; width: 48%; min-width: 300px; max-width: 100%; margin-left: 1em; background-repeat: no-repeat;' class='sro-example'>&nbsp;</div>Your SRO # (Service Request Order) is the largest number on any repair receipt or invoice from Tekserve. The number is seven digits long and located in the upper right corner of your receipt as shown.</div>
 <hr style='clear: both; visibility: hidden;'>
 <p class='statusField'><input class='limit' name='sro1' id='sro1' type='text' value='' maxlength='1' size='1' tabindex='1' onkeyup='checkLen(this,this.value)'></input> - <input class='limit' name='sro2' id='sro2' type='text' value='' maxlength='3' size='3' tabindex='2' onkeyup='checkLen(this,this.value)'></input> - <input class='limit' name='sro3' id='sro3' type='text' value='' maxlength='3' size='3' tabindex='3' onkeyup='checkLen(this,this.value)'></input></p><p><span class='label'>Billing ZIP Code</span></p><p><input class='limit' name='zip' id='zip' type='text'  value='' maxlength='5' size='5' tabindex='4' onkeyup='checkLen(this,this.value)' /></p><div class='buttons'><button type='button' class='positive'>Submit</button></div></form></div></div></div><div></div>
 <script type='text/javascript'>
 
 var \$j = jQuery;
 \$j('button.positive').click(function () {
-    var img_base_path = 'http://www.tekserve.com/skin/frontend/tekserve/tekstore/';
+    var img_base_path = 'http://maintekserve.wpengine.com/wp-content/themes/apparition1.0_tekserve/images/step';
     var repair_status = new Array('Created', 'In Progress', 'Testing', 'On Hold', 'Done', 'Ready for Pickup');
     var sro1 = \$j('#sro1').val();
     var sro2 = \$j('#sro2').val();
@@ -125,12 +125,10 @@ var \$j = jQuery;
             default:
             	result = 'On Hold';
             }
-            alert (result);
             var result_index = \$j.inArray(result, repair_status);
-            \$j('#status-content').children('img').attr('src', img_base_path + 'images/repair_stage_' + result_index + '.png');
+            \$j('#status-content').children('img').attr('src', img_base_path + result_index + '.svg');
             \$j('#status-content').children('img').attr('alt', result);
             \$j('#status-content').children('img').show();
-            \$j('#status-content').children('img').before('<h3>Current Status</h3>');
             var detail_cmt = \$j('ul.repair-details').find('li');
             \$j(detail_cmt[result_index]).show();
         }

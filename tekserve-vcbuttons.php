@@ -202,7 +202,6 @@ vc_map( array(
    "class" => "",
    "icon" => "icon-wpb-repairstatus",
    "category" => __('Content'),
-   'admin_enqueue_css' => array('vc_extend/icons.css')
 ) );
 
 vc_map( array(
@@ -211,7 +210,6 @@ vc_map( array(
    "class" => "",
    "icon" => "icon-wpb-sorttablepost",
    "category" => __('Content'),
-   "admin_enqueue_css" => array('vc_extend/icons.css'),
    "params" => array(
       array(
          "type" => "textfield",
@@ -261,7 +259,7 @@ vc_map( array(
          "param_name" => "meta",
          "value" => __(""),
          "description" => __("Enter the slugs for any additional fields you'd like to display as a column. Separate slugs with line breaks by pressing return key."),
-         "admin_label" => true
+         "admin_label" => True
       ),
 	 array(
          "type" => "checkbox",
@@ -269,9 +267,9 @@ vc_map( array(
          "class" => "",
          "heading" => __("Hide Featured Image"),
          "param_name" => "nothumb",
-         "value" => array("true"),
+         "value" => "",
          "description" => __("Check to hide the featured image column"),
-         "admin_label" => false
+         "admin_label" => False
       ),
 	 array(
          "type" => "checkbox",
@@ -279,9 +277,9 @@ vc_map( array(
          "class" => "",
          "heading" => __("Hide Title"),
          "param_name" => "notitle",
-         "value" => array("true"),
+         "value" => "",
          "description" => __("Check to hide the title column"),
-         "admin_label" => false
+         "admin_label" => False
       ),
 	 array(
          "type" => "checkbox",
@@ -289,9 +287,9 @@ vc_map( array(
          "class" => "",
          "heading" => __("Hide Post Date"),
          "param_name" => "nodate",
-         "value" => array("true"),
+         "value" => "",
          "description" => __("Check to hide the column for the post's date"),
-         "admin_label" => false
+         "admin_label" => False
       ),
      array(
          "type" => "checkbox",
@@ -299,9 +297,9 @@ vc_map( array(
          "class" => "",
          "heading" => __("Hide Categories"),
          "param_name" => "nocats",
-         "value" => array("true"),
+         "value" => "",
          "description" => __("Check to hide the categories column"),
-         "admin_label" => false
+         "admin_label" => False
       ),
 	 array(
          "type" => "checkbox",
@@ -309,9 +307,9 @@ vc_map( array(
          "class" => "",
          "heading" => __("Hide Tags"),
          "param_name" => "notags",
-         "value" => array("true"),
+         "value" => "",
          "description" => __("Check to hide the tags column"),
-         "admin_label" => false
+         "admin_label" => False
       )
     )
 )	);
@@ -323,7 +321,7 @@ vc_map( array(
    "class" => "",
    "icon" => "icon-wpb-drawer",
    "category" => __('Content'),
-   "admin_enqueue_css" => array('vc_extend/icons.css'),
+   "admin_enqueue_css" => array(plugins_url().'/tekserve-vcbuttons/vc_extend/icons.css'),
    "params" => array(
 	 array(
          "type" => "textfield",
@@ -333,7 +331,7 @@ vc_map( array(
          "param_name" => "id",
          "value" => __("click-here"),
          "description" => __("Required; Unique ID to identify drawer on this page. Use all lowercase, no special characters or spaces."),
-         "admin_label" => true
+         "admin_label" => True
       ),
       array(
          "type" => "textfield",
@@ -343,7 +341,7 @@ vc_map( array(
          "param_name" => "title",
          "value" => __("Click Here"),
          "description" => __("Required; Text that user clicks on to expand drawer"),
-         "admin_label" => true
+         "admin_label" => True
       ),
       array(
          "type" => "dropdown",
@@ -353,7 +351,7 @@ vc_map( array(
          "param_name" => "alignment",
          "value" => array("left", "leftcenter", "rightcenter", "right"),
          "description" => __("Required; Choose where the title text will appear on the page."),
-         "admin_label" => true
+         "admin_label" => True
       ),
       array(
          "type" => "textfield",
@@ -363,7 +361,7 @@ vc_map( array(
          "param_name" => "swaptitle",
          "value" => __("Click Here to Hide"),
          "description" => __("Optional; Title that is displayed when drawer is open."),
-         "admin_label" => true
+         "admin_label" => True
       ),
       array(
          "type" => "textfield",
@@ -373,7 +371,7 @@ vc_map( array(
          "param_name" => "id",
          "value" => __("click-here"),
          "description" => __("Required; Unique ID to identify drawer on this page. Use all lowercase, no special characters or spaces."),
-         "admin_label" => true
+         "admin_label" => True
       ),
       array(
          "type" => "dropdown",
@@ -383,7 +381,7 @@ vc_map( array(
          "param_name" => "color",
          "value" => array("white", "orange", "darkblue", "lightblue"),
          "description" => __("Choose the background color for this drawer."),
-         "admin_label" => true
+         "admin_label" => True
       ),
       array(
          "type" => "textarea_html",
@@ -392,8 +390,39 @@ vc_map( array(
          "heading" => __("Content"),
          "param_name" => "content",
          "value" => __("<p>I am test text block. Click edit button to change this text.</p>"),
-         "description" => __("Required; Enter the drop-down content of the drawer.")
+         "description" => __("Required; Enter the drop-down content of the drawer."),
+         "admin_label" => False
    )
 ) 
 	)
 );
+
+
+// Remove unneccesary default buttons from visual editor
+vc_remove_element("vc_facebook");
+vc_remove_element("vc_tweetmeme");
+vc_remove_element("vc_googleplus");
+vc_remove_element("vc_pinterest");
+vc_remove_element("vc_toggle");
+vc_remove_element("vc_tour");
+vc_remove_element("vc_teaser_grid");
+vc_remove_element("vc_posts_slider");
+vc_remove_element("vc_widget_sidebar");
+vc_remove_element("vc_button");
+vc_remove_element("vc_cta_button");
+vc_remove_element("vc_flickr");
+vc_remove_element("vc_pie");
+vc_remove_element("vc_wp_recentcomments");
+vc_remove_element("vc_wp_pages");
+vc_remove_element("vc_wp_tagcloud");
+vc_remove_element("vc_wp_custommenu");
+vc_remove_element("vc_wp_text");
+vc_remove_element("vc_wp_links");
+vc_remove_element("vc_wp_archives");
+vc_remove_element("vc_wp_rss");
+vc_remove_element("vc_progress_bar");
+vc_remove_element("vc_wp_search");
+vc_remove_element("vc_wp_meta");
+vc_remove_element("vc_wp_calendar");
+vc_remove_element("vc_wp_posts");
+vc_remove_element("vc_wp_categories");

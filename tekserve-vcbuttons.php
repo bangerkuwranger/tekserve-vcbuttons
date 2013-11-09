@@ -54,7 +54,7 @@ var \$j = jQuery;
     \$j.ajax({
         type: 'GET',
         dataType: 'jsonp',
-        url: 'http://dev.tekserve.com/statusp/?sro1=' + sro1 + '&sro2=' + sro2 + '&sro3=' + sro3 + '&zip=' + zip,
+        url: 'http://www.tekserve.com/statusp/?sro1=' + sro1 + '&sro2=' + sro2 + '&sro3=' + sro3 + '&zip=' + zip,
         success: function (msg) {
             \$j('#status-content').children('p').add('form.status-front').hide();
             if (msg == false) {
@@ -396,6 +396,67 @@ vc_map( array(
 ) 
 	)
 );
+
+
+vc_map( array(
+   "name" => __("Testimonial"),
+   "base" => "tekserve-testimonial",
+   "class" => "",
+   "icon" => "icon-wpb-testimonial",
+   "category" => __('Content'),
+   "params" => array(
+	   array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Testimonial ID"),
+			 "param_name" => "id",
+			 "value" => __(""),
+			 "description" => __("Enter the ID number of the single Testimonial to display. Leave blank to display a group."),
+			 "admin_label" => True
+		  ),
+		  array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Testimonial Type"),
+			 "param_name" => "type",
+			 "value" => __(""),
+			 "description" => __("To display a group of Testimonials, enter the Type here instead of an ID. All testimonials of that type will be displayed."),
+			 "admin_label" => True
+		  )
+    )
+)	);
+
+vc_map( array(
+   "name" => __("Single Post"),
+   "base" => "single_post",
+   "class" => "",
+   "icon" => "icon-wpb-single-post",
+   "category" => __('Content'),
+   "params" => array(
+		array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Post ID"),
+			 "param_name" => "id",
+			 "value" => __(""),
+			 "description" => __("Enter the ID number of the single Post to display."),
+			 "admin_label" => True
+		),
+		array(
+			 "type" => "dropdown",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Show Image?"),
+			 "param_name" => "show_image",
+			 "value" => array( "show", "hide" ),
+			 "description" => __("Select to show or hide image."),
+			 "admin_label" => True
+		)
+    )
+)	);
 
 
 // Remove unneccesary default buttons from visual editor

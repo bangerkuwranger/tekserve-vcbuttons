@@ -15,3 +15,15 @@
  
 /* .wpb_{shortcode_base} .wpb_element_wrapper selector can be used to add background image to VC shortcode block in the Visual Composer Editor working canvas */
 .wpb_sorttablepost .wpb_element_wrapper { background-image: url(icons/posttableicon.png); background-size: 32px; height: 225px; }
+
+/* path to the icon file should be relative to the css file where you place your css rules (this file) */
+.wpb_bootstrap_modals .wpb-content-layouts .wpb-layout-element-button .icon-wpb-testimonial { background-image: url(icons/testimonial.png); background-size: contain; }
+ 
+/* .wpb_{shortcode_base} .wpb_element_wrapper selector can be used to add background image to VC shortcode block in the Visual Composer Editor working canvas */
+.wpb_tekserve-testimonial .wpb_element_wrapper { background-image: url(icons/testimonial.png); background-size: 32px; height: 70px; }
+
+/* path to the icon file should be relative to the css file where you place your css rules (this file) */
+.wpb_bootstrap_modals .wpb-content-layouts .wpb-layout-element-button .icon-wpb-single-post { background-image: url(icons/single-post.png); background-size: contain; }
+ 
+/* .wpb_{shortcode_base} .wpb_element_wrapper selector can be used to add background image to VC shortcode block in the Visual Composer Editor working canvas */
+.wpb_single_post .wpb_element_wrapper { background-image: url(icons/single-post.png); background-size: 32px; height: 70px; }

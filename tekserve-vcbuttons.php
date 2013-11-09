@@ -450,7 +450,7 @@ vc_map( array(
 			 "holder" => "div",
 			 "class" => "",
 			 "heading" => __("Show Image?"),
-			 "param_name" => "show_image",
+			 "param_name" => "showimage",
 			 "value" => array( "show", "hide" ),
 			 "description" => __("Select to show or hide image."),
 			 "admin_label" => True

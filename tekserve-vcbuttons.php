@@ -458,6 +458,25 @@ vc_map( array(
     )
 )	);
 
+vc_map( array(
+   "name" => __("Widget"),
+   "base" => "widgets_on_pages",
+   "class" => "",
+   "icon" => "icon-wpb-widget",
+   "category" => __('Content'),
+   "params" => array(
+		array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Widget ID"),
+			 "param_name" => "id",
+			 "value" => __(""),
+			 "description" => __("Enter the ID number of the widget to display."),
+			 "admin_label" => True
+		)
+    )
+)	);
 
 // Remove unneccesary default buttons from visual editor
 vc_remove_element("vc_facebook");

@@ -193,6 +193,29 @@ function drawer( $atts, $content = null ) { // New function parameter $content i
 }
 add_shortcode( 'drawer', 'drawer' );
 
+/*** nRelate Popular & Related ***/
+
+if (function_exists('nrelate_popular')) {
+	add_shortcode( 'nrelatepopular', 'nrelate_popular' );
+	vc_map( array(
+	   "name" => __("nRelate Popular Posts"),
+	   "base" => "nrelatepopular",
+	   "class" => "",
+	   "icon" => "icon-wpb-nrelatepopular",
+	   "category" => __('Content'),
+	) );
+}
+
+if (function_exists('nrelate_related')) {
+	add_shortcode( 'nrelaterelated', 'nrelate_related' );
+	vc_map( array(
+	   "name" => __("nRelate Related Posts"),
+	   "base" => "nrelaterelated",
+	   "class" => "",
+	   "icon" => "icon-wpb-nrelaterelated",
+	   "category" => __('Content'),
+	) );
+}
 
 /*** Custom Visual Composer Mappings ***/
 
@@ -472,11 +495,12 @@ vc_map( array(
 			 "heading" => __("Widget ID"),
 			 "param_name" => "id",
 			 "value" => __(""),
-			 "description" => __("Enter the ID number of the widget to display."),
+			 "description" => __("Enter the ID of the widget to display."),
 			 "admin_label" => True
 		)
     )
 )	);
+
 
 // Remove unneccesary default buttons from visual editor
 vc_remove_element("vc_facebook");
@@ -498,11 +522,9 @@ vc_remove_element("vc_wp_tagcloud");
 vc_remove_element("vc_wp_custommenu");
 vc_remove_element("vc_wp_text");
 vc_remove_element("vc_wp_links");
-vc_remove_element("vc_wp_archives");
 vc_remove_element("vc_wp_rss");
 vc_remove_element("vc_progress_bar");
 vc_remove_element("vc_wp_search");
 vc_remove_element("vc_wp_meta");
 vc_remove_element("vc_wp_calendar");
 vc_remove_element("vc_wp_posts");
-vc_remove_element("vc_wp_categories");

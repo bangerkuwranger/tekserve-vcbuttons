@@ -45,3 +45,15 @@
  
 /* .wpb_{shortcode_base} .wpb_element_wrapper selector can be used to add background image to VC shortcode block in the Visual Composer Editor working canvas */
 .wpb_nrelaterelated .wpb_element_wrapper { background-image: url(icons/related.png); background-size: 32px; height: 70px; }
+
+/* path to the icon file should be relative to the css file where you place your css rules (this file) */
+.wpb_bootstrap_modals .wpb-content-layouts .wpb-layout-element-button .icon-wpb-map { background-image: url(icons/directions.png); background-size: contain; }
+ 
+/* .wpb_{shortcode_base} .wpb_element_wrapper selector can be used to add background image to VC shortcode block in the Visual Composer Editor working canvas */
+.wpb_get_to_tekserve .wpb_element_wrapper { background-image: url(icons/directions.png); background-size: 32px; height: 70px; }
+
+/* path to the icon file should be relative to the css file where you place your css rules (this file) */
+.wpb_bootstrap_modals .wpb-content-layouts .wpb-layout-element-button .icon-wpb-map-drawer { background-image: url(icons/mapdrawericon.png); background-size: contain; }
+ 
+/* .wpb_{shortcode_base} .wpb_element_wrapper selector can be used to add background image to VC shortcode block in the Visual Composer Editor working canvas */
+.wpb_get_to_tekserve_drawer .wpb_element_wrapper { background-image: url(icons/mapdrawericon.png); background-size: 32px; height: 70px; }

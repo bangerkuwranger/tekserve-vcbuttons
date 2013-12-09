@@ -218,313 +218,333 @@ if (function_exists('nrelate_related')) {
 }
 
 /*** Custom Visual Composer Mappings ***/
+if (function_exists('vc_map')) { //check for vc_map function before mapping buttons
+	vc_map( array(
+	   "name" => __("Repair Status Checker"),
+	   "base" => "repairstatus",
+	   "class" => "",
+	   "icon" => "icon-wpb-repairstatus",
+	   "category" => __('Content'),
+	) );
 
-vc_map( array(
-   "name" => __("Repair Status Checker"),
-   "base" => "repairstatus",
-   "class" => "",
-   "icon" => "icon-wpb-repairstatus",
-   "category" => __('Content'),
-) );
-
-vc_map( array(
-   "name" => __("Sortable Table"),
-   "base" => "sorttablepost",
-   "class" => "",
-   "icon" => "icon-wpb-sorttablepost",
-   "category" => __('Content'),
-   "params" => array(
-      array(
-         "type" => "textfield",
-         "holder" => "div",
-         "class" => "",
-         "heading" => __("Unique ID"),
-         "param_name" => "id",
-         "value" => __(""),
-         "description" => __("Enter a unique id (no spaces) for this table."),
-         "admin_label" => true
-      ),
-      array(
-         "type" => "textfield",
-         "holder" => "div",
-         "class" => "",
-         "heading" => __("Custom Post Type"),
-         "param_name" => "type",
-         "value" => __(""),
-         "description" => __("Enter the slug for the post type you would like to display"),
-         "admin_label" => true
-      ),
-     array(
-         "type" => "textfield",
-         "holder" => "div",
-         "class" => "",
-         "heading" => __("Custom Hierarchical Taxononomy"),
-         "param_name" => "cat",
-         "value" => __(""),
-         "description" => __("Enter the slug for the custom taxonomy you would like to display"),
-         "admin_label" => true
-      ),
-      array(
-         "type" => "textfield",
-         "holder" => "div",
-         "class" => "",
-         "heading" => __("Custom Non-Hierarchical Taxononomy"),
-         "param_name" => "cat",
-         "value" => __(""),
-         "description" => __("Enter the slug for the custom taxonomy you would like to display"),
-         "admin_label" => true
-      ),
-      array( // need to troubleshoot this feature for vc
-         "type" => "exploded_textarea",
-         "holder" => "div",
-         "class" => "",
-         "heading" => __("Additional Columns"),
-         "param_name" => "meta",
-         "value" => __(""),
-         "description" => __("Enter the slugs for any additional fields you'd like to display as a column. Separate slugs with line breaks by pressing return key."),
-         "admin_label" => True
-      ),
-	 array(
-         "type" => "checkbox",
-         "holder" => "div",
-         "class" => "",
-         "heading" => __("Hide Featured Image"),
-         "param_name" => "nothumb",
-         "value" => "",
-         "description" => __("Check to hide the featured image column"),
-         "admin_label" => False
-      ),
-	 array(
-         "type" => "checkbox",
-         "holder" => "div",
-         "class" => "",
-         "heading" => __("Hide Title"),
-         "param_name" => "notitle",
-         "value" => "",
-         "description" => __("Check to hide the title column"),
-         "admin_label" => False
-      ),
-	 array(
-         "type" => "checkbox",
-         "holder" => "div",
-         "class" => "",
-         "heading" => __("Hide Post Date"),
-         "param_name" => "nodate",
-         "value" => "",
-         "description" => __("Check to hide the column for the post's date"),
-         "admin_label" => False
-      ),
-     array(
-         "type" => "checkbox",
-         "holder" => "div",
-         "class" => "",
-         "heading" => __("Hide Categories"),
-         "param_name" => "nocats",
-         "value" => "",
-         "description" => __("Check to hide the categories column"),
-         "admin_label" => False
-      ),
-	 array(
-         "type" => "checkbox",
-         "holder" => "div",
-         "class" => "",
-         "heading" => __("Hide Tags"),
-         "param_name" => "notags",
-         "value" => "",
-         "description" => __("Check to hide the tags column"),
-         "admin_label" => False
-      )
-    )
-)	);
-
-
-vc_map( array(
-   "name" => __("Drawer"),
-   "base" => "drawer",
-   "class" => "",
-   "icon" => "icon-wpb-drawer",
-   "category" => __('Content'),
-   "admin_enqueue_css" => array(plugins_url().'/tekserve-vcbuttons/vc_extend/icons.css'),
-   "params" => array(
-	 array(
-         "type" => "textfield",
-         "holder" => "div",
-         "class" => "",
-         "heading" => __("Unique ID"),
-         "param_name" => "id",
-         "value" => __("click-here"),
-         "description" => __("Required; Unique ID to identify drawer on this page. Use all lowercase, no special characters or spaces."),
-         "admin_label" => True
-      ),
-      array(
-         "type" => "textfield",
-         "holder" => "div",
-         "class" => "",
-         "heading" => __("Title"),
-         "param_name" => "title",
-         "value" => __("Click Here"),
-         "description" => __("Required; Text that user clicks on to expand drawer"),
-         "admin_label" => True
-      ),
-      array(
-         "type" => "dropdown",
-         "holder" => "div",
-         "class" => "",
-         "heading" => __("Alignment"),
-         "param_name" => "alignment",
-         "value" => array("left", "leftcenter", "rightcenter", "right"),
-         "description" => __("Required; Choose where the title text will appear on the page."),
-         "admin_label" => True
-      ),
-      array(
-         "type" => "textfield",
-         "holder" => "div",
-         "class" => "",
-         "heading" => __("Alternate Title"),
-         "param_name" => "swaptitle",
-         "value" => __("Click Here to Hide"),
-         "description" => __("Optional; Title that is displayed when drawer is open."),
-         "admin_label" => True
-      ),
-      array(
-         "type" => "textfield",
-         "holder" => "div",
-         "class" => "",
-         "heading" => __("Unique ID"),
-         "param_name" => "id",
-         "value" => __("click-here"),
-         "description" => __("Required; Unique ID to identify drawer on this page. Use all lowercase, no special characters or spaces."),
-         "admin_label" => True
-      ),
-      array(
-         "type" => "dropdown",
-         "holder" => "div",
-         "class" => "",
-         "heading" => __("Background Color"),
-         "param_name" => "color",
-         "value" => array("white", "orange", "darkblue", "lightblue"),
-         "description" => __("Choose the background color for this drawer."),
-         "admin_label" => True
-      ),
-      array(
-         "type" => "textarea_html",
-         "holder" => "div",
-         "class" => "",
-         "heading" => __("Content"),
-         "param_name" => "content",
-         "value" => __("<p>I am test text block. Click edit button to change this text.</p>"),
-         "description" => __("Required; Enter the drop-down content of the drawer."),
-         "admin_label" => False
-   )
-) 
-	)
-);
-
-
-vc_map( array(
-   "name" => __("Testimonial"),
-   "base" => "tekserve-testimonial",
-   "class" => "",
-   "icon" => "icon-wpb-testimonial",
-   "category" => __('Content'),
-   "params" => array(
-	   array(
+	vc_map( array(
+	   "name" => __("Sortable Table"),
+	   "base" => "sorttablepost",
+	   "class" => "",
+	   "icon" => "icon-wpb-sorttablepost",
+	   "category" => __('Content'),
+	   "params" => array(
+		  array(
 			 "type" => "textfield",
 			 "holder" => "div",
 			 "class" => "",
-			 "heading" => __("Testimonial ID"),
+			 "heading" => __("Unique ID"),
 			 "param_name" => "id",
 			 "value" => __(""),
-			 "description" => __("Enter the ID number of the single Testimonial to display. Leave blank to display a group."),
+			 "description" => __("Enter a unique id (no spaces) for this table."),
+			 "admin_label" => true
+		  ),
+		  array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Custom Post Type"),
+			 "param_name" => "type",
+			 "value" => __(""),
+			 "description" => __("Enter the slug for the post type you would like to display"),
+			 "admin_label" => true
+		  ),
+		 array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Custom Hierarchical Taxononomy"),
+			 "param_name" => "cat",
+			 "value" => __(""),
+			 "description" => __("Enter the slug for the custom taxonomy you would like to display"),
+			 "admin_label" => true
+		  ),
+		  array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Custom Non-Hierarchical Taxononomy"),
+			 "param_name" => "cat",
+			 "value" => __(""),
+			 "description" => __("Enter the slug for the custom taxonomy you would like to display"),
+			 "admin_label" => true
+		  ),
+		  array( // need to troubleshoot this feature for vc
+			 "type" => "exploded_textarea",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Additional Columns"),
+			 "param_name" => "meta",
+			 "value" => __(""),
+			 "description" => __("Enter the slugs for any additional fields you'd like to display as a column. Separate slugs with line breaks by pressing return key."),
+			 "admin_label" => True
+		  ),
+		 array(
+			 "type" => "checkbox",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Hide Featured Image"),
+			 "param_name" => "nothumb",
+			 "value" => "",
+			 "description" => __("Check to hide the featured image column"),
+			 "admin_label" => False
+		  ),
+		 array(
+			 "type" => "checkbox",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Hide Title"),
+			 "param_name" => "notitle",
+			 "value" => "",
+			 "description" => __("Check to hide the title column"),
+			 "admin_label" => False
+		  ),
+		 array(
+			 "type" => "checkbox",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Hide Post Date"),
+			 "param_name" => "nodate",
+			 "value" => "",
+			 "description" => __("Check to hide the column for the post's date"),
+			 "admin_label" => False
+		  ),
+		 array(
+			 "type" => "checkbox",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Hide Categories"),
+			 "param_name" => "nocats",
+			 "value" => "",
+			 "description" => __("Check to hide the categories column"),
+			 "admin_label" => False
+		  ),
+		 array(
+			 "type" => "checkbox",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Hide Tags"),
+			 "param_name" => "notags",
+			 "value" => "",
+			 "description" => __("Check to hide the tags column"),
+			 "admin_label" => False
+		  )
+		)
+	)	);
+
+
+	vc_map( array(
+	   "name" => __("Drawer"),
+	   "base" => "drawer",
+	   "class" => "",
+	   "icon" => "icon-wpb-drawer",
+	   "category" => __('Content'),
+	   "admin_enqueue_css" => array(plugins_url().'/tekserve-vcbuttons/vc_extend/icons.css'),
+	   "params" => array(
+		 array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Unique ID"),
+			 "param_name" => "id",
+			 "value" => __("click-here"),
+			 "description" => __("Required; Unique ID to identify drawer on this page. Use all lowercase, no special characters or spaces."),
 			 "admin_label" => True
 		  ),
 		  array(
 			 "type" => "textfield",
 			 "holder" => "div",
 			 "class" => "",
-			 "heading" => __("Testimonial Type"),
-			 "param_name" => "type",
-			 "value" => __(""),
-			 "description" => __("To display a group of Testimonials, enter the Type here instead of an ID. All testimonials of that type will be displayed."),
+			 "heading" => __("Title"),
+			 "param_name" => "title",
+			 "value" => __("Click Here"),
+			 "description" => __("Required; Text that user clicks on to expand drawer"),
 			 "admin_label" => True
-		  )
-    )
-)	);
-
-vc_map( array(
-   "name" => __("Single Post"),
-   "base" => "single_post",
-   "class" => "",
-   "icon" => "icon-wpb-single-post",
-   "category" => __('Content'),
-   "params" => array(
-		array(
-			 "type" => "textfield",
-			 "holder" => "div",
-			 "class" => "",
-			 "heading" => __("Post ID"),
-			 "param_name" => "id",
-			 "value" => __(""),
-			 "description" => __("Enter the ID number of the single Post to display."),
-			 "admin_label" => True
-		),
-		array(
+		  ),
+		  array(
 			 "type" => "dropdown",
 			 "holder" => "div",
 			 "class" => "",
-			 "heading" => __("Show Image?"),
-			 "param_name" => "showimage",
-			 "value" => array( "show", "hide" ),
-			 "description" => __("Select to show or hide image."),
+			 "heading" => __("Alignment"),
+			 "param_name" => "alignment",
+			 "value" => array("left", "leftcenter", "rightcenter", "right"),
+			 "description" => __("Required; Choose where the title text will appear on the page."),
 			 "admin_label" => True
-		)
-    )
-)	);
-
-vc_map( array(
-   "name" => __("Widget"),
-   "base" => "widgets_on_pages",
-   "class" => "",
-   "icon" => "icon-wpb-widget",
-   "category" => __('Content'),
-   "params" => array(
-		array(
+		  ),
+		  array(
 			 "type" => "textfield",
 			 "holder" => "div",
 			 "class" => "",
-			 "heading" => __("Widget ID"),
-			 "param_name" => "id",
-			 "value" => __(""),
-			 "description" => __("Enter the ID of the widget to display."),
+			 "heading" => __("Alternate Title"),
+			 "param_name" => "swaptitle",
+			 "value" => __("Click Here to Hide"),
+			 "description" => __("Optional; Title that is displayed when drawer is open."),
 			 "admin_label" => True
+		  ),
+		  array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Unique ID"),
+			 "param_name" => "id",
+			 "value" => __("click-here"),
+			 "description" => __("Required; Unique ID to identify drawer on this page. Use all lowercase, no special characters or spaces."),
+			 "admin_label" => True
+		  ),
+		  array(
+			 "type" => "dropdown",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Background Color"),
+			 "param_name" => "color",
+			 "value" => array("white", "orange", "darkblue", "lightblue"),
+			 "description" => __("Choose the background color for this drawer."),
+			 "admin_label" => True
+		  ),
+		  array(
+			 "type" => "textarea_html",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Content"),
+			 "param_name" => "content",
+			 "value" => __("<p>I am test text block. Click edit button to change this text.</p>"),
+			 "description" => __("Required; Enter the drop-down content of the drawer."),
+			 "admin_label" => False
+	   )
+	) 
 		)
-    )
-)	);
+	);
 
+
+	vc_map( array(
+	   "name" => __("Testimonial"),
+	   "base" => "tekserve-testimonial",
+	   "class" => "",
+	   "icon" => "icon-wpb-testimonial",
+	   "category" => __('Content'),
+	   "params" => array(
+		   array(
+				 "type" => "textfield",
+				 "holder" => "div",
+				 "class" => "",
+				 "heading" => __("Testimonial ID"),
+				 "param_name" => "id",
+				 "value" => __(""),
+				 "description" => __("Enter the ID number of the single Testimonial to display. Leave blank to display a group."),
+				 "admin_label" => True
+			  ),
+			  array(
+				 "type" => "textfield",
+				 "holder" => "div",
+				 "class" => "",
+				 "heading" => __("Testimonial Type"),
+				 "param_name" => "type",
+				 "value" => __(""),
+				 "description" => __("To display a group of Testimonials, enter the Type here instead of an ID. All testimonials of that type will be displayed."),
+				 "admin_label" => True
+			  )
+		)
+	)	);
+
+	vc_map( array(
+	   "name" => __("Single Post"),
+	   "base" => "single_post",
+	   "class" => "",
+	   "icon" => "icon-wpb-single-post",
+	   "category" => __('Content'),
+	   "params" => array(
+			array(
+				 "type" => "textfield",
+				 "holder" => "div",
+				 "class" => "",
+				 "heading" => __("Post ID"),
+				 "param_name" => "id",
+				 "value" => __(""),
+				 "description" => __("Enter the ID number of the single Post to display."),
+				 "admin_label" => True
+			),
+			array(
+				 "type" => "dropdown",
+				 "holder" => "div",
+				 "class" => "",
+				 "heading" => __("Show Image?"),
+				 "param_name" => "showimage",
+				 "value" => array( "show", "hide" ),
+				 "description" => __("Select to show or hide image."),
+				 "admin_label" => True
+			)
+		)
+	)	);
+
+	vc_map( array(
+	   "name" => __("Widget"),
+	   "base" => "widgets_on_pages",
+	   "class" => "",
+	   "icon" => "icon-wpb-widget",
+	   "category" => __('Content'),
+	   "params" => array(
+			array(
+				 "type" => "textfield",
+				 "holder" => "div",
+				 "class" => "",
+				 "heading" => __("Widget ID"),
+				 "param_name" => "id",
+				 "value" => __(""),
+				 "description" => __("Enter the ID of the widget to display."),
+				 "admin_label" => True
+			)
+		)
+	)	);
+	
+	if (function_exists('vc_map')) {	
+		vc_map( array(
+		   "name" => __("Directions To Tekserve"),
+		   "base" => "get_to_tekserve",
+		   "class" => "",
+		   "icon" => "icon-wpb-map",
+		   "category" => __('Content'),
+		) );
+		
+		vc_map( array(
+	   "name" => __("Drawer with Directions to Tekserve"),
+	   "base" => "get_to_tekserve_drawer",
+	   "class" => "",
+	   "icon" => "icon-wpb-map-drawer",
+	   "category" => __('Content'),
+	) );
+	}
+}
 
 // Remove unneccesary default buttons from visual editor
-vc_remove_element("vc_facebook");
-vc_remove_element("vc_tweetmeme");
-vc_remove_element("vc_googleplus");
-vc_remove_element("vc_pinterest");
-vc_remove_element("vc_toggle");
-vc_remove_element("vc_tour");
-vc_remove_element("vc_teaser_grid");
-vc_remove_element("vc_posts_slider");
-vc_remove_element("vc_widget_sidebar");
-vc_remove_element("vc_button");
-vc_remove_element("vc_cta_button");
-vc_remove_element("vc_flickr");
-vc_remove_element("vc_pie");
-vc_remove_element("vc_wp_recentcomments");
-vc_remove_element("vc_wp_pages");
-vc_remove_element("vc_wp_tagcloud");
-vc_remove_element("vc_wp_custommenu");
-vc_remove_element("vc_wp_text");
-vc_remove_element("vc_wp_links");
-vc_remove_element("vc_wp_rss");
-vc_remove_element("vc_progress_bar");
-vc_remove_element("vc_wp_search");
-vc_remove_element("vc_wp_meta");
-vc_remove_element("vc_wp_calendar");
-vc_remove_element("vc_wp_posts");
+if (function_exists('vc_remove_element')) {
+	vc_remove_element("vc_facebook");
+	vc_remove_element("vc_tweetmeme");
+	vc_remove_element("vc_googleplus");
+	vc_remove_element("vc_pinterest");
+	vc_remove_element("vc_toggle");
+	vc_remove_element("vc_tour");
+	vc_remove_element("vc_teaser_grid");
+	vc_remove_element("vc_posts_slider");
+	vc_remove_element("vc_widget_sidebar");
+	vc_remove_element("vc_button");
+	vc_remove_element("vc_cta_button");
+	vc_remove_element("vc_flickr");
+	vc_remove_element("vc_pie");
+	vc_remove_element("vc_wp_recentcomments");
+	vc_remove_element("vc_wp_pages");
+	vc_remove_element("vc_wp_tagcloud");
+	vc_remove_element("vc_wp_custommenu");
+	vc_remove_element("vc_wp_text");
+	vc_remove_element("vc_wp_links");
+	vc_remove_element("vc_wp_rss");
+	vc_remove_element("vc_progress_bar");
+	vc_remove_element("vc_wp_search");
+	vc_remove_element("vc_wp_meta");
+	vc_remove_element("vc_wp_calendar");
+	vc_remove_element("vc_wp_posts");
+}

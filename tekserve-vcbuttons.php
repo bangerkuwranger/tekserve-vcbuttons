@@ -477,6 +477,16 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 				 "value" => array( "show", "hide" ),
 				 "description" => __("Select to show or hide image."),
 				 "admin_label" => True
+			),
+			array(
+				 "type" => "textfield",
+				 "holder" => "div",
+				 "class" => "",
+				 "heading" => __("Text for Button"),
+				 "param_name" => "buttontext",
+				 "value" => __(""),
+				 "description" => __("Enter the text for the button below the excerpt. If you don't want a button, leave this field blank."),
+				 "admin_label" => True
 			)
 		)
 	)	);

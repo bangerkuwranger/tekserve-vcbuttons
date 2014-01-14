@@ -26,7 +26,7 @@
 .wpb_bootstrap_modals .wpb-content-layouts .wpb-layout-element-button .icon-wpb-single-post { background-image: url(icons/single-post.png); background-size: contain; }
  
 /* .wpb_{shortcode_base} .wpb_element_wrapper selector can be used to add background image to VC shortcode block in the Visual Composer Editor working canvas */
-.wpb_single_post .wpb_element_wrapper { background-image: url(icons/single-post.png); background-size: 32px; height: 70px; }
+.wpb_single_post .wpb_element_wrapper { background-image: url(icons/single-post.png); background-size: 32px; height: 140px; }
 
 /* path to the icon file should be relative to the css file where you place your css rules (this file) */
 .wpb_bootstrap_modals .wpb-content-layouts .wpb-layout-element-button .icon-wpb-widget { background-image: url(icons/widget.png); background-size: contain; }

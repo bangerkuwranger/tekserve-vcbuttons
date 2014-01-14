@@ -370,36 +370,6 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 			 "type" => "dropdown",
 			 "holder" => "div",
 			 "class" => "",
-			 "heading" => __("Alignment"),
-			 "param_name" => "alignment",
-			 "value" => array("left", "leftcenter", "rightcenter", "right"),
-			 "description" => __("Required; Choose where the title text will appear on the page."),
-			 "admin_label" => True
-		  ),
-		  array(
-			 "type" => "textfield",
-			 "holder" => "div",
-			 "class" => "",
-			 "heading" => __("Alternate Title"),
-			 "param_name" => "swaptitle",
-			 "value" => __("Click Here to Hide"),
-			 "description" => __("Optional; Title that is displayed when drawer is open."),
-			 "admin_label" => True
-		  ),
-		  array(
-			 "type" => "textfield",
-			 "holder" => "div",
-			 "class" => "",
-			 "heading" => __("Unique ID"),
-			 "param_name" => "id",
-			 "value" => __("click-here"),
-			 "description" => __("Required; Unique ID to identify drawer on this page. Use all lowercase, no special characters or spaces."),
-			 "admin_label" => True
-		  ),
-		  array(
-			 "type" => "dropdown",
-			 "holder" => "div",
-			 "class" => "",
 			 "heading" => __("Background Color"),
 			 "param_name" => "color",
 			 "value" => array("white", "orange", "darkblue", "lightblue"),
@@ -507,7 +477,7 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 				 "value" => __(""),
 				 "description" => __("Enter the ID of the widget to display."),
 				 "admin_label" => True
-			)
+			),
 		)
 	)	);
 	
@@ -525,7 +495,7 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 	   "base" => "get_to_tekserve_drawer",
 	   "class" => "",
 	   "icon" => "icon-wpb-map-drawer",
-	   "category" => __('Content'),
+	   "category" => __('Content')
 	) );
 	}
 }

@@ -27,7 +27,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 $tharurl = plugin_dir_path( __FILE__ ).'extend-vc/icons/sro.jpg';
 function repair_status_checker($atts){
-return "<div id='status-title'><h2>Check Your Repair Status</h2></div><div id='status-wrapper'><div id='status-content'><p>Please use the form below to check the status of your repair at Tekserve. Just enter your SRO number (found in the upper right corner of your receipt) and billing zip code below.</p><img id='statusimg' src='' /><div id='fail-msg' style='display:none'><p style='padding:5px 0px'>The information you provided does not match what we have on record.<br />Please double check your information and try again. If it still isn't working for you, call us at: 212.929.3645</p><input onclick='javascript:document.location.reload()' class='button' type='button' value='Try Again'></input></div><div style='display:none' class='customer-info'><ul><li class='customer-info'><h3>Customer Info</h3><p></p></li><li id='product-info'><p></p></li>
+return "<div id='status-title'><h2>Check Your Repair Status</h2></div><div id='status-wrapper'><div id='status-content'><p>Please use the form below to check the status of your repair at Tekserve. Just enter your invoice number (found in the upper right corner of your receipt) and billing zip code below.</p><img id='statusimg' src='' /><div id='fail-msg' style='display:none'><p style='padding:5px 0px'>The information you provided does not match what we have on record.<br />Please double check your information and try again. If it still isn't working for you, call us at: 212.929.3645</p><input onclick='javascript:document.location.reload()' class='button' type='button' value='Try Again'></input></div><div style='display:none' class='customer-info'><ul><li class='customer-info'><h3>Customer Info</h3><p></p></li><li id='product-info'><p></p></li>
 <li class='repair-details'><h3>Details</h3>
 <ul class='repair-details'>
 <li style='display: none'><p>During the first 1-3 business days, your repair will be processed and assigned to a technician.</p></li>
@@ -36,8 +36,8 @@ return "<div id='status-title'><h2>Check Your Repair Status</h2></div><div id='s
 <li style='display: none'><p>Call Customer Support at 212.929.3645 for more information regarding this repair.</p></li>
 <li style='display: none'><p>The repair is done and has been picked up.</p></li>
 <li style='display: none'><p>The repair is done. It is ready to be picked up, if you have not made other arrangements.</p></li>
-</ul></li></ul></div><form class='status-front' id='status-front' method='get'><p><span class='label'>SRO#</span> <a href='javascript:showExampleSRO();'>What's this?</a></p>
-<div id='whats-sro' style='display: none; text-align: left; font-size: 16px; font-weight: normal;' ><div style='background-image: url(https://www.tekserve.com/media/wysiwyg/images/sroexample.jpg); background-position: left top; background-size: 100%; float: right; min-height: 235px; width: 48%; min-width: 300px; max-width: 100%; margin-left: 1em; background-repeat: no-repeat;' class='sro-example'>&nbsp;</div>Your SRO # (Service Request Order) is the largest number on any repair receipt or invoice from Tekserve. The number is seven digits long and located in the upper right corner of your receipt as shown.</div>
+</ul></li></ul></div><form class='status-front' id='status-front' method='get'><p><span class='label'>Invoice #</span> <a href='javascript:showExampleSRO();'>What's this?</a></p>
+<div id='whats-sro' style='display: none; text-align: left; font-size: 16px; font-weight: normal;' ><div style='background-image: url(https://www.tekserve.com/media/wysiwyg/images/sroexample.jpg); background-position: left top; background-size: 100%; float: right; min-height: 235px; width: 48%; min-width: 300px; max-width: 100%; margin-left: 1em; background-repeat: no-repeat;' class='sro-example'>&nbsp;</div>Your Invoice # (also known as a Service Request Order number or SRO number) is the largest number on any repair receipt or invoice from Tekserve. The number is seven digits long and located in the upper right corner of your receipt as shown.</div>
 <hr style='clear: both; visibility: hidden;'>
 <p class='statusField'><input class='limit' name='sro1' id='sro1' type='text' value='' maxlength='1' size='1' tabindex='1' onkeyup='checkLen(this,this.value)'></input> - <input class='limit' name='sro2' id='sro2' type='text' value='' maxlength='3' size='3' tabindex='2' onkeyup='checkLen(this,this.value)'></input> - <input class='limit' name='sro3' id='sro3' type='text' value='' maxlength='3' size='3' tabindex='3' onkeyup='checkLen(this,this.value)'></input></p><p><span class='label'>Billing ZIP Code</span></p><p><input class='limit' name='zip' id='zip' type='text'  value='' maxlength='5' size='5' tabindex='4' onkeyup='checkLen(this,this.value)' /></p><div class='buttons'><button type='button' class='positive'>Submit</button></div></form></div></div></div><div></div>
 <script type='text/javascript'>
@@ -50,7 +50,7 @@ var \$j = jQuery;
     var sro2 = \$j('#sro2').val();
     var sro3 = \$j('#sro3').val();
     var zip = \$j('#zip').val();
-    var sro_zip = 'SRO#: ' + sro1 + '-' + sro2 + '-' + sro3 + '<br />' + 'Billing Zip Code: ' + zip;
+    var sro_zip = 'Invoice #: ' + sro1 + '-' + sro2 + '-' + sro3 + '<br />' + 'Billing Zip Code: ' + zip;
     \$j.ajax({
         type: 'GET',
         dataType: 'jsonp',

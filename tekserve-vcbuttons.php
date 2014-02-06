@@ -183,13 +183,13 @@ function drawer( $atts, $content = null ) { // New function parameter $content i
 		'elwrapclass' => $options['wrapclass'],
 		'cookiename' => '',
 		'color' => 'none',
-		'alignment' => 'left'
+		'alignment' => 'left',
+		'findme' => 'auto'
    ), $atts ) );
  
    $content = wpb_js_remove_wpautop($content); // fix unclosed/unwanted paragraph tags in $content
  
-   return "<div class='section ${color} dsection'><div class='drawer'><div id='${id}' class='collapseomatic colomat-hover ${alignment}' title='${title}'>${title}</div><div id='swap-${id}' style='display:none;'>${swaptitle}</div><div id='target-${id}' class='collapseomatic_content' style='display:none;'>${content}</div></div></div>";
-// 
+   return "<div class='section ${color} dsection'><div class='drawer'><a id='find-${id}' name='' alt='0'> </a><span id='${id}' class='collapseomatic find-me ${alignment}' title='${title}'>${title}</span><span id='swap-${id}' style='display:none;'>${swaptitle}</span><div id='target-${id}' class='collapseomatic_content' style='display:none;'>${content}</div></div></div>";
 }
 add_shortcode( 'drawer', 'drawer' );
 
@@ -215,6 +215,70 @@ if (function_exists('nrelate_related')) {
 	   "icon" => "icon-wpb-nrelaterelated",
 	   "category" => __('Content'),
 	) );
+}
+
+//shortcode for detailbox
+add_shortcode( 'detailbox', 'detail_box' );
+
+
+//e.g.[detailbox title='title' content='This is the info.' color='orange']
+function detail_box( $atts, $content = null ) { // New function parameter $content is added!
+   extract( shortcode_atts( array(
+		'detailtitle1' => 'Click Here',
+		'detailcontent1' => 'This is the information',
+		'detailtitle2' => '',
+		'detailcontent2' => '',
+		'detailtitle3' => '',
+		'detailcontent3' => '',
+		'detailtitle4' => '',
+		'detailcontent4' => '',
+		'detailtitle5' => '',
+		'detailcontent5' => '',
+		'detailtitle6' => '',
+		'detailcontent6' => '',
+		'detailtitle7' => '',
+		'detailcontent7' => '',
+		'detailtitle8' => '',
+		'detailcontent8' => '',
+		'detailtitle9' => '',
+		'detailcontent9' => '',
+		'detailtitle10' => '',
+		'detailcontent10' => '',
+		'color' => 'none'
+   ), $atts ) );
+ 
+	$content = wpb_js_remove_wpautop($content); // fix unclosed/unwanted paragraph tags in $content
+	//create opening containers
+	$finaloutput = "<div class='section ${color} dboxsection'><div class='detailBox'><div class='detailBox-left'>";
+	//loop creates triggers on left side of detailbox
+	$i = 1;
+	while ($i <= 10) {
+		$currenttitle = 'detailtitle'.$i;
+		$currenttitle = $atts[$currenttitle];
+		$currentid = strtolower(preg_replace("/[^A-Za-z0-9]/", "", $currenttitle));
+		if ($currenttitle != '') {
+			$finaloutput = $finaloutput."<div class='detailBoxTrigger-container'><div class='detailBoxTrigger' id='".$currentid."_trigger'>".$currenttitle."</div></div>";
+		}
+		$i++;
+	}
+	//close left side and open right side divs; also add mobile interface elements
+	$finaloutput = $finaloutput."</div><div class='detailBox-right'><div class='detailBox-mobile'><span class='detailBox-mobile-back'>back</span><span class='detailBox-mobile-title'>Title</span></div>";
+	//loop creates content panels
+	$i = 1;
+	while ($i <= 10) {
+		$currentid = 'detailtitle'.$i;
+		$currentid = $atts[$currentid];
+		$currentid = strtolower(preg_replace("/[^A-Za-z0-9]/", "", $currentid));
+		$currentcontent = 'detailcontent'.$i;
+		$currentcontent = rawurldecode(base64_decode(strip_tags($atts[$currentcontent])));
+		if ($currentcontent != '') {
+			$finaloutput = $finaloutput."<div class='detailBox-detail' id='".$currentid."'>".$currentcontent."</div>";
+		}
+		$i++;
+	}
+	//close right and container divs
+	$finaloutput = $finaloutput."</div></div></div>";
+	return $finaloutput;
 }
 
 /*** Custom Visual Composer Mappings ***/
@@ -392,6 +456,227 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 
 
 	vc_map( array(
+	   "name" => __("Detail Box"),
+	   "base" => "detailbox",
+	   "class" => "",
+	   "icon" => "icon-wpb-detailBox",
+	   "category" => __('Content'),
+	   "params" => array(
+		 array(
+			 "type" => "dropdown",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Background Color"),
+			 "param_name" => "color",
+			 "value" => array("white", "orange", "darkblue", "lightblue"),
+			 "description" => __("Choose the background color for this detailbox."),
+			 "admin_label" => True
+		  ),
+		 array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Title 1"),
+			 "param_name" => "detailtitle1",
+			 "value" => __("Click Here"),
+			 "description" => __("Enter the title for the first item."),
+			 "admin_label" => True
+		  ),
+		  array(
+			 "type" => "textarea_raw_html",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Content 1"),
+			 "param_name" => "detailcontent1",
+			 "value" => __("<p>I am test text block. Click edit button to change this text.</p>"),
+			 "description" => __("Enter the content for the first item."),
+			 "admin_label" => False
+		  ),
+	   	  array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Title 2"),
+			 "param_name" => "detailtitle2",
+			 "value" => __(""),
+			 "description" => __("Enter the title for the second item."),
+			 "admin_label" => True
+		  ),
+		  array(
+			 "type" => "textarea_raw_html",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Content 2"),
+			 "param_name" => "detailcontent2",
+			 "value" => __(""),
+			 "description" => __("Enter the content for the second item."),
+			 "admin_label" => False
+	      ),
+	   	  array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Title 3"),
+			 "param_name" => "detailtitle3",
+			 "value" => __(""),
+			 "description" => __("Enter the title for the third item."),
+			 "admin_label" => True
+		  ),
+		  array(
+			 "type" => "textarea_raw_html",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Content 3"),
+			 "param_name" => "detailcontent3",
+			 "value" => __(""),
+			 "description" => __("Enter the content for the third item."),
+			 "admin_label" => False
+	      ),
+	   	  array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Title 4"),
+			 "param_name" => "detailtitle4",
+			 "value" => __(""),
+			 "description" => __("Enter the title for the fourth item."),
+			 "admin_label" => True
+		  ),
+		  array(
+			 "type" => "textarea_raw_html",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Content 4"),
+			 "param_name" => "detailcontent4",
+			 "value" => __(""),
+			 "description" => __("Enter the content for the fourth item."),
+			 "admin_label" => False
+	      ),
+	   	  array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Title 5"),
+			 "param_name" => "detailtitle5",
+			 "value" => __(""),
+			 "description" => __("Enter the title for the fifth item."),
+			 "admin_label" => True
+		  ),
+		  array(
+			 "type" => "textarea_raw_html",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Content 5"),
+			 "param_name" => "detailcontent5",
+			 "value" => __(""),
+			 "description" => __("Enter the content for the fifth item."),
+			 "admin_label" => False
+	      ),
+	   	  array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Title 6"),
+			 "param_name" => "detailtitle6",
+			 "value" => __(""),
+			 "description" => __("Enter the title for the sixth item."),
+			 "admin_label" => True
+		  ),
+		  array(
+			 "type" => "textarea_raw_html",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Content 6"),
+			 "param_name" => "detailcontent6",
+			 "value" => __(""),
+			 "description" => __("Enter the content for the sixth item."),
+			 "admin_label" => False
+	      ),
+	      array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Title 7"),
+			 "param_name" => "detailtitle7",
+			 "value" => __(""),
+			 "description" => __("Enter the title for the seventh item."),
+			 "admin_label" => True
+		  ),
+		  array(
+			 "type" => "textarea_raw_html",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Content 7"),
+			 "param_name" => "detailcontent7",
+			 "value" => __(""),
+			 "description" => __("Enter the content for the seventh item."),
+			 "admin_label" => False
+	      ),
+	      array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Title 8"),
+			 "param_name" => "detailtitle8",
+			 "value" => __(""),
+			 "description" => __("Enter the title for the eighth item."),
+			 "admin_label" => True
+		  ),
+		  array(
+			 "type" => "textarea_raw_html",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Content 8"),
+			 "param_name" => "detailcontent8",
+			 "value" => __(""),
+			 "description" => __("Enter the content for the eighth item."),
+			 "admin_label" => False
+	      ),
+	      array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Title 9"),
+			 "param_name" => "detailtitle9",
+			 "value" => __(""),
+			 "description" => __("Enter the title for the ninth item."),
+			 "admin_label" => True
+		  ),
+		  array(
+			 "type" => "textarea_raw_html",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Content 9"),
+			 "param_name" => "detailcontent9",
+			 "value" => __(""),
+			 "description" => __("Enter the content for the ninth item."),
+			 "admin_label" => False
+	      ),
+	      array(
+			 "type" => "textfield",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Title 10"),
+			 "param_name" => "detailtitle10",
+			 "value" => __(""),
+			 "description" => __("Enter the title for the tenth item."),
+			 "admin_label" => True
+		  ),
+		  array(
+			 "type" => "textarea_raw_html",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Content 10"),
+			 "param_name" => "detailcontent10",
+			 "value" => __(""),
+			 "description" => __("Enter the content for the tenth item."),
+			 "admin_label" => False
+	      )
+	) 
+		)
+	);
+
+	vc_map( array(
 	   "name" => __("Testimonial"),
 	   "base" => "tekserve-testimonial",
 	   "class" => "",
@@ -416,6 +701,36 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 				 "param_name" => "type",
 				 "value" => __(""),
 				 "description" => __("To display a group of Testimonials, enter the Type here instead of an ID. All testimonials of that type will be displayed."),
+				 "admin_label" => True
+			  )
+		)
+	)	);
+	
+		vc_map( array(
+	   "name" => __("Case Study"),
+	   "base" => "tekserve-case-study",
+	   "class" => "",
+	   "icon" => "icon-wpb-case-study",
+	   "category" => __('Content'),
+	   "params" => array(
+		   array(
+				 "type" => "textfield",
+				 "holder" => "div",
+				 "class" => "",
+				 "heading" => __("Case Study ID"),
+				 "param_name" => "id",
+				 "value" => __(""),
+				 "description" => __("Enter the ID number of the single Case Study to display. Leave blank to display a group."),
+				 "admin_label" => True
+			  ),
+			  array(
+				 "type" => "textfield",
+				 "holder" => "div",
+				 "class" => "",
+				 "heading" => __("Case Study Type"),
+				 "param_name" => "type",
+				 "value" => __(""),
+				 "description" => __("To display a group of Case Studies, enter the Type here and leave ID blank. All case studies of that type will be displayed."),
 				 "admin_label" => True
 			  )
 		)

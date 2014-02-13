@@ -197,24 +197,28 @@ add_shortcode( 'drawer', 'drawer' );
 
 if (function_exists('nrelate_popular')) {
 	add_shortcode( 'nrelatepopular', 'nrelate_popular' );
-	vc_map( array(
-	   "name" => __("nRelate Popular Posts"),
-	   "base" => "nrelatepopular",
-	   "class" => "",
-	   "icon" => "icon-wpb-nrelatepopular",
-	   "category" => __('Content'),
-	) );
+	if (function_exists('vc_map')) { //check for vc_map function before mapping buttons
+		vc_map( array(
+		   "name" => __("nRelate Popular Posts"),
+		   "base" => "nrelatepopular",
+		   "class" => "",
+		   "icon" => "icon-wpb-nrelatepopular",
+		   "category" => __('Content'),
+		) );
+	}
 }
 
 if (function_exists('nrelate_related')) {
 	add_shortcode( 'nrelaterelated', 'nrelate_related' );
-	vc_map( array(
-	   "name" => __("nRelate Related Posts"),
-	   "base" => "nrelaterelated",
-	   "class" => "",
-	   "icon" => "icon-wpb-nrelaterelated",
-	   "category" => __('Content'),
-	) );
+	if (function_exists('vc_map')) { //check for vc_map function before mapping buttons
+		vc_map( array(
+		   "name" => __("nRelate Related Posts"),
+		   "base" => "nrelaterelated",
+		   "class" => "",
+		   "icon" => "icon-wpb-nrelaterelated",
+		   "category" => __('Content'),
+		) );
+	}
 }
 
 //shortcode for detailbox

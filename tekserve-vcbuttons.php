@@ -188,8 +188,12 @@ function drawer( $atts, $content = null ) { // New function parameter $content i
    ), $atts ) );
  
    $content = wpb_js_remove_wpautop($content); // fix unclosed/unwanted paragraph tags in $content
- 
-   return "<div class='section ${color} dsection'><div class='drawer'><a id='find-${id}' name='' alt='0'> </a><span id='${id}' class='collapseomatic find-me ${alignment}' title='${title}'>${title}</span><span id='swap-${id}' style='display:none;'>${swaptitle}</span><div id='target-${id}' class='collapseomatic_content' style='display:none;'>${content}</div></div></div>";
+   $showonload = "none";
+   if($expanded == "true"){
+			$trigclass .= ' colomat-close';
+			$showonload = "block";
+		}
+   return "<div class='section ${color} dsection'><div class='drawer'><a id='find-${id}' name='' alt='0'> </a><span id='${id}' class='collapseomatic find-me ${alignment} " . $trigclass . "' title='${title}'>${title}</span><span id='swap-${id}' style='display:none;'>${swaptitle}</span><div id='target-${id}' class='collapseomatic_content' style='display:".$showonload.";'>${content}</div></div></div>";
 }
 add_shortcode( 'drawer', 'drawer' );
 
@@ -453,7 +457,17 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 			 "value" => __("<p>I am test text block. Click edit button to change this text.</p>"),
 			 "description" => __("Required; Enter the drop-down content of the drawer."),
 			 "admin_label" => False
-	   )
+	   ),
+	   array(
+			 "type" => "dropdown",
+			 "holder" => "div",
+			 "class" => "",
+			 "heading" => __("Open on Page Load"),
+			 "param_name" => "expanded",
+			 "value" => array("false", "true"),
+			 "description" => __("Select whether this drawer will be opened or closed when the page loads. False (closed) is default."),
+			 "admin_label" => True
+		  ),
 	) 
 		)
 	);

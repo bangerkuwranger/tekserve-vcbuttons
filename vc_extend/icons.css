@@ -69,3 +69,23 @@
  
 /* .wpb_{shortcode_base} .wpb_element_wrapper selector can be used to add background image to VC shortcode block in the Visual Composer Editor working canvas */
 .wpb_detailbox .wpb_element_wrapper { background-image: url(icons/detailbox.png); background-size: 32px; height: 280px; }
+
+/* path to the icon file should be relative to the css file where you place your css rules (this file) */
+.wpb_bootstrap_modals .wpb-content-layouts .wpb-layout-element-button .icon-wpb-rentalitemcat { background-image: url(icons/rentaldrawer.png); background-size: contain; }
+ 
+/* .wpb_{shortcode_base} .wpb_element_wrapper selector can be used to add background image to VC shortcode block in the Visual Composer Editor working canvas */
+.wpb_rentalitemcategory .wpb_element_wrapper { background-image: url(icons/rentaldrawer.png); background-size: 32px; height: 180px; }
+
+/* path to the icon file should be relative to the css file where you place your css rules (this file) */
+.wpb_bootstrap_modals .wpb-content-layouts .wpb-layout-element-button .icon-wpb-rentalitem { background-image: url(icons/rentalitem.png); background-size: contain; }
+ 
+/* .wpb_{shortcode_base} .wpb_element_wrapper selector can be used to add background image to VC shortcode block in the Visual Composer Editor working canvas */
+.wpb_rentalitem .wpb_element_wrapper { background-image: url(icons/rentalitem.png); background-size: 32px; height: 180px; }
+
+/* path to the icon file should be relative to the css file where you place your css rules (this file) */
+.wpb_bootstrap_modals .wpb-content-layouts .wpb-layout-element-button .icon-wpb-rentalcheckout,
+.wpb_bootstrap_modals .wpb-content-layouts .wpb-layout-element-button .icon-wpb-rentaldateform { background-image: url(icons/form.png); background-size: contain; }
+ 
+/* .wpb_{shortcode_base} .wpb_element_wrapper selector can be used to add background image to VC shortcode block in the Visual Composer Editor working canvas */
+.wpb_rentalcheckout .wpb_element_wrapper,
+.wpb_rentaldateform .wpb_element_wrapper { background-image: url(icons/form.png); background-size: 32px; height: 33px; }

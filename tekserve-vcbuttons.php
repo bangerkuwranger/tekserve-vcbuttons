@@ -4,14 +4,14 @@
  * Plugin Name: Tekserve VCButtons
  * Plugin URI: https://github.com/bangerkuwranger
  * Description: Custom shortcodes for interface elements and Visual Composer button mappings
- * Version: 1.0
+ * Version: 1.1
  * Author: Chad A. Carino
  * Author URI: http://www.chadacarino.com
  * License: MIT
  */
 /*
 The MIT License (MIT)
-Copyright (c) 2013 Chad A. Carino
+Copyright (c) 2013-2014 Chad A. Carino
  
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
  
@@ -206,6 +206,7 @@ if (function_exists('nrelate_popular')) {
 		   "name" => __("nRelate Popular Posts"),
 		   "base" => "nrelatepopular",
 		   "class" => "",
+		   "show_settings_on_create" => false,
 		   "icon" => "icon-wpb-nrelatepopular",
 		   "category" => __('Content'),
 		) );
@@ -219,6 +220,7 @@ if (function_exists('nrelate_related')) {
 		   "name" => __("nRelate Related Posts"),
 		   "base" => "nrelaterelated",
 		   "class" => "",
+		   "show_settings_on_create" => false,
 		   "icon" => "icon-wpb-nrelaterelated",
 		   "category" => __('Content'),
 		) );
@@ -295,6 +297,7 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 	   "name" => __("Repair Status Checker"),
 	   "base" => "repairstatus",
 	   "class" => "",
+	   "show_settings_on_create" => false,
 	   "icon" => "icon-wpb-repairstatus",
 	   "category" => __('Content'),
 	) );
@@ -819,6 +822,7 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 		   "name" => __("Directions To Tekserve"),
 		   "base" => "get_to_tekserve",
 		   "class" => "",
+		   "show_settings_on_create" => false,
 		   "icon" => "icon-wpb-map",
 		   "category" => __('Content'),
 		) );
@@ -827,6 +831,7 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 	   "name" => __("Drawer with Directions to Tekserve"),
 	   "base" => "get_to_tekserve_drawer",
 	   "class" => "",
+	   "show_settings_on_create" => false,
 	   "icon" => "icon-wpb-map-drawer",
 	   "category" => __('Content')
 	) );

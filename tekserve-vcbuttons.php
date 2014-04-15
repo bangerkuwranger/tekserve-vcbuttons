@@ -4,7 +4,7 @@
  * Plugin Name: Tekserve VCButtons
  * Plugin URI: https://github.com/bangerkuwranger
  * Description: Custom shortcodes for interface elements and Visual Composer button mappings
- * Version: 1.2
+ * Version: 1.2.1
  * Author: Chad A. Carino
  * Author URI: http://www.chadacarino.com
  * License: MIT
@@ -27,7 +27,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 $tharurl = plugin_dir_path( __FILE__ ).'extend-vc/icons/sro.jpg';
 function repair_status_checker($atts){
-return "<div id='status-title'><h2>Check Your Repair Status</h2></div><div id='status-wrapper'><div id='status-content'><p>Please use the form below to check the status of your repair at Tekserve. Just enter your invoice number (found in the upper right corner of your receipt) and billing zip code below.</p><img id='statusimg' src='' /><div id='fail-msg' style='display:none'><p style='padding:5px 0px'>The information you provided does not match what we have on record.<br />Please double check your information and try again. If it still isn't working for you, call us at: 212.929.3645</p><input onclick='javascript:document.location.reload()' class='button' type='button' value='Try Again'></input></div><div style='display:none' class='customer-info'><ul><li class='customer-info'><h3>Customer Info</h3><p></p></li><li id='product-info'><p></p></li>
+return "<div id='status-title'><h2>Check Your Repair Status</h2></div><div id='status-wrapper'><div id='status-content'><p>Please use the form below to check the status of your repair at Tekserve. Just enter your invoice number (found in the upper right corner of your receipt) and billing zip code below.</p><img id='statusimg' src='' /><div id='fail-msg' style='display:none'><p style='padding:5px 0px'>The information you provided does not match what we have on record.<br />Please double check your information and try again. If it still isn't working for you, call us at: 212.929.3645</p><input onclick='javascript:document.location.reload()' class='button' type='button' value='Try Again'></input></div><div style='display:none' class='customer-info'><ul><li id='customer-info'><h3>Customer Info</h3><div class='info'></p></li><li id='product-info'></li>
 <li class='repair-details'><h3>Details</h3>
 <ul class='repair-details'>
 <li style='display: none'><p>During the first 1-3 business days, your repair will be processed and assigned to a technician.</p></li>
@@ -65,9 +65,13 @@ var \$j = jQuery;
             var product_name = 'Product: ' + msg.product;
             \$j('#status-title').find('strong').html('Repair Status');
             \$j('form.status-front').hide();
+            \$j('#customer-info').show();
             \$j('.customer-info').show();
-            \$j('li.customer-info').children('p').html(sro_zip);
-            \$j('#product-info').children('p').html(product_name);
+            \$j('#customer-info div').html('Name: ' + msg.name + '<br/>' + sro_zip);
+            console.log(sro_zip);
+            var product_name = '<h3>Product</h3><div>' + msg.product + '</div>';
+            console.log(product_name);
+            \$j('#product-info').html(product_name);
             var result = msg.status;
             switch(result)
             {

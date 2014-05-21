@@ -850,7 +850,6 @@ if (function_exists('vc_remove_element')) {
 	vc_remove_element("vc_pinterest");
 	vc_remove_element("vc_toggle");
 	vc_remove_element("vc_tour");
-	vc_remove_element("vc_teaser_grid");
 	vc_remove_element("vc_posts_slider");
 	vc_remove_element("vc_widget_sidebar");
 	vc_remove_element("vc_button");
@@ -859,7 +858,6 @@ if (function_exists('vc_remove_element')) {
 	vc_remove_element("vc_pie");
 	vc_remove_element("vc_wp_recentcomments");
 	vc_remove_element("vc_wp_pages");
-	vc_remove_element("vc_wp_tagcloud");
 	vc_remove_element("vc_wp_custommenu");
 	vc_remove_element("vc_wp_text");
 	vc_remove_element("vc_wp_links");

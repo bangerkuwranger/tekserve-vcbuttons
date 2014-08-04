@@ -4,7 +4,7 @@
  * Plugin Name: Tekserve VCButtons
  * Plugin URI: https://github.com/bangerkuwranger
  * Description: Custom shortcodes for interface elements and Visual Composer button mappings
- * Version: 1.2.1
+ * Version: 1.2.2
  * Author: Chad A. Carino
  * Author URI: http://www.chadacarino.com
  * License: MIT

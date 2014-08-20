@@ -80,7 +80,7 @@
 .vc_modal-dialog .wpb-content-layouts .wpb-layout-element-button .icon-wpb-rentalitemcat { background-image: url(icons/rentaldrawer.png); background-size: contain; }
  
 /* .wpb_{shortcode_base} .wpb_element_wrapper selector can be used to add background image to VC shortcode block in the Visual Composer Editor working canvas */
-.wpb_rentalitemcategory .icon-wpb-rentalitemcategory { background-image: url(icons/rentaldrawer.png); background-size: 32px; }
+.wpb_rentalitemcategory .icon-wpb-rentalitemcat { background-image: url(icons/rentaldrawer.png); background-size: 32px; }
 
 /* path to the icon file should be relative to the css file where you place your css rules (this file) */
 .vc_modal-dialog .wpb-content-layouts .wpb-layout-element-button .icon-wpb-rentalitem { background-image: url(icons/rentalitem.png); background-size: contain; }

@@ -235,7 +235,7 @@ if (function_exists('nrelate_related')) {
 add_shortcode( 'detailbox', 'detail_box' );
 
 
-//e.g.[detailbox title='title' content='This is the info.' color='orange']
+//e.g.[detailbox title='title' content='This is the info.']
 function detail_box( $atts, $content = null ) { // New function parameter $content is added!
    extract( shortcode_atts( array(
 		'detailtitle1' => 'Click Here',
@@ -257,13 +257,12 @@ function detail_box( $atts, $content = null ) { // New function parameter $conte
 		'detailtitle9' => '',
 		'detailcontent9' => '',
 		'detailtitle10' => '',
-		'detailcontent10' => '',
-		'color' => 'none'
+		'detailcontent10' => ''
    ), $atts ) );
  
 	$content = wpb_js_remove_wpautop($content); // fix unclosed/unwanted paragraph tags in $content
 	//create opening containers
-	$finaloutput = "<div class='section ${color} dboxsection'><div class='detailBox'><div class='detailBox-left'>";
+	$finaloutput = "<div class='detailBox'><div class='detailBox-left'>";
 	//loop creates triggers on left side of detailbox
 	$i = 1;
 	while ($i <= 10) {
@@ -291,7 +290,7 @@ function detail_box( $atts, $content = null ) { // New function parameter $conte
 		$i++;
 	}
 	//close right and container divs
-	$finaloutput = $finaloutput."</div></div></div>";
+	$finaloutput = $finaloutput."</div></div>";
 	return $finaloutput;
 }
 
@@ -487,16 +486,6 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 	   "icon" => "icon-wpb-detailBox",
 	   "category" => __('Content'),
 	   "params" => array(
-		 array(
-			 "type" => "dropdown",
-			 "holder" => "div",
-			 "class" => "",
-			 "heading" => __("Background Color"),
-			 "param_name" => "color",
-			 "value" => array("white", "orange", "darkblue", "lightblue"),
-			 "description" => __("Choose the background color for this detailbox."),
-			 "admin_label" => True
-		  ),
 		 array(
 			 "type" => "textfield",
 			 "holder" => "div",

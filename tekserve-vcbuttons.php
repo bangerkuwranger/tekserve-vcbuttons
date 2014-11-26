@@ -23,137 +23,19 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 /**  Shortcodes for VC Buttons  **/
 
 //e.g.[repairstatus] 
-//shortcode for tekserve repair status checker
+//shortcode for tekserve repair status checker, if not loaded by helper
+//code is in helper for actual output
 
 $tharurl = plugin_dir_path( __FILE__ ).'extend-vc/icons/sro.jpg';
-function repair_status_checker($atts){
-return "<div id='status-title'><h2>Check Your Repair Status</h2></div><div id='status-wrapper'><div id='status-content'><p>Please use the form below to check the status of your repair at Tekserve. Just enter your invoice number (found in the upper right corner of your receipt) and billing zip code below.</p><img id='statusimg' src='' /><div id='fail-msg' style='display:none'><p style='padding:5px 0px'>The information you provided does not match what we have on record.<br />Please double check your information and try again. If it still isn't working for you, call us at: 212.929.3645</p><input onclick='javascript:document.location.reload()' class='button' type='button' value='Try Again'></input></div><div style='display:none' class='customer-info'><ul><li id='customer-info'><h3>Customer Info</h3><div class='info'></p></li><li id='product-info'></li>
-<li class='repair-details'><h3>Details</h3>
-<ul class='repair-details'>
-<li style='display: none'><p>During the first 1-3 business days, your repair will be processed and assigned to a technician.</p></li>
-<li style='display: none'><p>A technician will work on your repair during this time. This will include confirming your issue, ordering replacement parts (if needed), and replacing the affected parts.</p></li>
-<li style='display: none'><p>We are confirming that we resolved the issue.</p></li>
-<li style='display: none'><p>Call Customer Support at 212.929.3645 for more information regarding this repair.</p></li>
-<li style='display: none'><p>The repair is done and has been picked up.</p></li>
-<li style='display: none'><p>The repair is done. It is ready to be picked up, if you have not made other arrangements.</p></li>
-</ul></li></ul></div><form class='status-front' id='status-front' method='get'><p><span class='label'>Invoice #</span> <a href='javascript:showExampleSRO();'>What's this?</a></p>
-<div id='whats-sro' style='display: none; text-align: left; font-size: 16px; font-weight: normal;' ><div style='background-image: url(https://store.tekserve.com/media/wysiwyg/images/sroexample.jpg); background-position: left top; background-size: 100%; float: right; min-height: 150px; width: 48%; min-width: 300px; max-width: 100%; margin-left: 1em; background-repeat: no-repeat;' class='sro-example'>&nbsp;</div>Your Invoice # (also known as a Service Request Order number or SRO number) is the largest number on any repair receipt or invoice from Tekserve. The number is seven digits long and located in the upper right corner of your receipt as shown.</div>
-<hr style='clear: both; visibility: hidden;'>
-<p class='statusField'><input class='limit' name='sro1' id='sro1' type='text' value='' maxlength='1' size='1' tabindex='1' onkeyup='checkLen(this,this.value)'></input> - <input class='limit' name='sro2' id='sro2' type='text' value='' maxlength='3' size='3' tabindex='2' onkeyup='checkLen(this,this.value)'></input> - <input class='limit' name='sro3' id='sro3' type='text' value='' maxlength='3' size='3' tabindex='3' onkeyup='checkLen(this,this.value)'></input></p><p><span class='label'>Billing ZIP Code</span></p><p><input class='limit' name='zip' id='zip' type='text'  value='' maxlength='5' size='5' tabindex='4' onkeyup='checkLen(this,this.value)' /></p><div class='buttons'><button type='button' class='positive'>Submit</button></div></form></div></div></div><div></div>
-<script type='text/javascript'>
+if ( !function_exists('repair_status_checker') ) {
 
-var \$j = jQuery;
-\$j('button.positive').click(function () {
-    var img_base_path = 'http://maintekserve.wpengine.com/wp-content/themes/apparition1.2_tekserve/images/step';
-    var repair_status = new Array('Created', 'In Progress', 'Testing', 'On Hold', 'Done', 'Ready for Pickup');
-    var sro1 = \$j('#sro1').val();
-    var sro2 = \$j('#sro2').val();
-    var sro3 = \$j('#sro3').val();
-    var zip = \$j('#zip').val();
-    var sro_zip = 'Invoice #: ' + sro1 + '-' + sro2 + '-' + sro3 + '<br />' + 'Billing Zip Code: ' + zip;
-    \$j.ajax({
-        type: 'GET',
-        dataType: 'jsonp',
-        url: 'http://store.tekserve.com/statusp/?sro1=' + sro1 + '&sro2=' + sro2 + '&sro3=' + sro3 + '&zip=' + zip,
-        success: function (msg) {
-            \$j('#status-content').children('p').add('form.status-front').hide();
-            if (msg == false) {
-                \$j('#status-title').find('strong').html('Login Failed');
-                \$j('#fail-msg').show();
-                return;
-            }
-            var product_name = 'Product: ' + msg.product;
-            \$j('#status-title').find('strong').html('Repair Status');
-            \$j('form.status-front').hide();
-            \$j('#customer-info').show();
-            \$j('.customer-info').show();
-            \$j('#customer-info div').html('Name: ' + msg.name + '<br/>' + sro_zip);
-            console.log(sro_zip);
-            var product_name = '<h3>Product</h3><div>' + msg.product + '</div>';
-            console.log(product_name);
-            \$j('#product-info').html(product_name);
-            var result = msg.status;
-            switch(result)
-            {
-            case 'Created':
-            	break;
-            case 'In Progress':
-            	break;
-            case 'INTAKE':
-            	result = 'In Progress';
-            	break;
-            case 'REPAIR':
-            	result = 'In Progress';
-            	break;
-            case 'hold\/internal':
-            	result = 'In Progress';
-            	break;
-            case 'hold\/complete payment':
-            	result = 'On Hold';
-            	break;
-            case 'hold\/info':
-            	result = 'On Hold';
-            	break;
-            case 'hold\/payment':
-            	result = 'On Hold';
-            	break;
-            case 'hold\/no Email':
-            	result = 'On Hold';
-            	break;
-            case 'hold\/recovery':
-            	result = 'On Hold';
-            	break;
-            case 'hold\/discuss':
-            	result = 'On Hold';
-            	break;
-            case 'hold\/spill':
-            	result = 'On Hold';
-            	break;
-            case 'hold\/pw':
-            	result = 'On Hold';
-            	break;
-            case 'WAIT':
-            	result = 'On Hold';
-            	break;
-            case 'Testing':
-            	break;
-            case 'Service Complete TOAC':
-            	result = 'Ready for Pickup';
-            	break;
-            case 'Service Complete':
-            	result = 'Ready for Pickup';
-            	break;
-            case 'Done':
-            	result = 'Done';
-            	break;
-            default:
-            	result = 'On Hold';
-            }
-            var result_index = \$j.inArray(result, repair_status);
-            \$j('#status-content').children('img').attr('src', img_base_path + result_index + '.svg');
-            \$j('#status-content').children('img').attr('alt', result);
-            \$j('#status-content').children('img').show();
-            var detail_cmt = \$j('ul.repair-details').find('li');
-            \$j(detail_cmt[result_index]).show();
-        }
-    });
-});
-
-function checkLen(x, y) {
-    if (y.length == x.maxLength) {
-        var next = x.tabIndex;
-        if (next < document.getElementById('status-front').length) {
-            document.getElementById('status-front').elements[next].focus();
-        }
-    }
+	function repair_status_checker($atts){
+		return '<h2>Status Checker is currently offline.</h2><p>Please call our service department directly at 212.929.3645.</p>'; 
+	}
+	
+	add_shortcode( 'repairstatus', 'repair_status_checker' );
 }
 
-function showExampleSRO() {
-	\$j('#whats-sro').toggle();
-}
-</script>";
-}
-add_shortcode( 'repairstatus', 'repair_status_checker' );
 
 
 //e.g.[drawer title='title' swaptitle='alternate title for open drawer' alt='hover tag' notitle='"true" if no hover element desired' id='unique-id' tag='<div>' trigclass='trigger-class' targtag='<span>' targclass='target-content-class' rel='group-for-elements-only-one-open-at-a-time' expanded='"true" to expand on page load' startwrap='<div class="extra-class-wrapper"><h1>' endwrap='</h1></div>' color='orange' alignment='left']

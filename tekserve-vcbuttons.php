@@ -22,25 +22,29 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 /**  Shortcodes for VC Buttons  **/
 
+
+
 //e.g.[repairstatus] 
 //shortcode for tekserve repair status checker, if not loaded by helper
 //code is in helper for actual output
+if( !( function_exists( 'repair_status_checker' ) ) ) {
 
-$tharurl = plugin_dir_path( __FILE__ ).'extend-vc/icons/sro.jpg';
-if ( !function_exists('repair_status_checker') ) {
-
-	function repair_status_checker($atts){
+	function repair_status_checker( $atts ) {
+	
 		return '<h2>Status Checker is currently offline.</h2><p>Please call our service department directly at 212.929.3645.</p>'; 
-	}
+	
+	}	//end repair_status_checker( $atts )
 	
 	add_shortcode( 'repairstatus', 'repair_status_checker' );
-}
+
+}	//end if( !( function_exists( 'repair_status_checker' ) ) )
 
 
 
 //e.g.[drawer title='title' swaptitle='alternate title for open drawer' alt='hover tag' notitle='"true" if no hover element desired' id='unique-id' tag='<div>' trigclass='trigger-class' targtag='<span>' targclass='target-content-class' rel='group-for-elements-only-one-open-at-a-time' expanded='"true" to expand on page load' startwrap='<div class="extra-class-wrapper"><h1>' endwrap='</h1></div>' color='orange' alignment='left']
 //custom shortcode for collapsomatic elements, requires collapseomatic plugin. This modifies shortcode to pass correct elements and content to Visual Composer
 function drawer( $atts, $content = null ) { // New function parameter $content is added!
+
    extract( shortcode_atts( array(
 		'title' => 'Click Here',
 		'swaptitle' => 'Click Here to Hide',
@@ -73,52 +77,38 @@ function drawer( $atts, $content = null ) { // New function parameter $content i
 		'findme' => 'auto'
    ), $atts ) );
  
-   $content = wpb_js_remove_wpautop($content); // fix unclosed/unwanted paragraph tags in $content
+   $content = wpb_js_remove_wpautop( $content ); // fix unclosed/unwanted paragraph tags in $content
    $showonload = "none";
-   if($expanded == "true"){
+   if( $expanded == "true" ) {
+   
 			$trigclass .= ' colomat-close';
 			$showonload = "block";
-		}
-   return "<div class='section ${color} dsection'><div class='drawer'><a id='find-${id}' name='' alt='0'> </a><span id='${id}' class='collapseomatic find-me ${alignment} " . $trigclass . "' title='${title}'>${title}</span><span id='swap-${id}' style='display:none;'>${swaptitle}</span><div id='target-${id}' class='collapseomatic_content' style='display:".$showonload.";'>${content}</div></div></div>";
-}
+	
+	}	//end if( $expanded == "true" )
+   return "
+   <div class='section ${color} dsection'>
+   		<div class='drawer'>
+   			<a id='find-${id}' name='' alt='0'> </a>
+   			<span id='${id}' class='collapseomatic find-me ${alignment} " . $trigclass . "' title='${title}'>${title}</span>
+   			<span id='swap-${id}' style='display:none;'>${swaptitle}</span>
+   			<div id='target-${id}' class='collapseomatic_content' style='display:".$showonload.";'>
+   				${content}
+   			</div>
+   		</div>
+   	</div>";
+
+}	//end drawer( $atts, $content = null )
+
 add_shortcode( 'drawer', 'drawer' );
 
-/*** nRelate Popular & Related ***/
 
-if (function_exists('nrelate_popular')) {
-	add_shortcode( 'nrelatepopular', 'nrelate_popular' );
-	if (function_exists('vc_map')) { //check for vc_map function before mapping buttons
-		vc_map( array(
-		   "name" => __("nRelate Popular Posts"),
-		   "base" => "nrelatepopular",
-		   "class" => "",
-		   "show_settings_on_create" => false,
-		   "icon" => "icon-wpb-nrelatepopular",
-		   "category" => __('Content'),
-		) );
-	}
-}
 
-if (function_exists('nrelate_related')) {
-	add_shortcode( 'nrelaterelated', 'nrelate_related' );
-	if (function_exists('vc_map')) { //check for vc_map function before mapping buttons
-		vc_map( array(
-		   "name" => __("nRelate Related Posts"),
-		   "base" => "nrelaterelated",
-		   "class" => "",
-		   "show_settings_on_create" => false,
-		   "icon" => "icon-wpb-nrelaterelated",
-		   "category" => __('Content'),
-		) );
-	}
-}
 
+//e.g.[detailbox detailtitle[n]='title' detailcontent[n]='This is the info.']
+//where [n] is the integer (1-10) corresponding to the number of the title & content pair in the detailbox
 //shortcode for detailbox
-add_shortcode( 'detailbox', 'detail_box' );
-
-
-//e.g.[detailbox title='title' content='This is the info.']
 function detail_box( $atts, $content = null ) { // New function parameter $content is added!
+
    extract( shortcode_atts( array(
 		'detailtitle1' => 'Click Here',
 		'detailcontent1' => 'This is the information',
@@ -142,42 +132,74 @@ function detail_box( $atts, $content = null ) { // New function parameter $conte
 		'detailcontent10' => ''
    ), $atts ) );
  
-	$content = wpb_js_remove_wpautop($content); // fix unclosed/unwanted paragraph tags in $content
+	$content = wpb_js_remove_wpautop( $content ); // fix unclosed/unwanted paragraph tags in $content
 	//create opening containers
-	$finaloutput = "<div class='detailBox'><div class='detailBox-left'>";
+	$finaloutput = "
+	<div class='detailBox'>
+		<div class='detailBox-left'>";
 	//loop creates triggers on left side of detailbox
 	$i = 1;
-	while ($i <= 10) {
-		$currenttitle = 'detailtitle'.$i;
+	while( $i <= 10 ) {
+	
+		$currenttitle = 'detailtitle' . $i;
 		$currenttitle = $atts[$currenttitle];
-		$currentid = strtolower(preg_replace("/[^A-Za-z0-9]/", "", $currenttitle));
-		if ($currenttitle != '') {
-			$finaloutput = $finaloutput."<div class='detailBoxTrigger-container'><div class='detailBoxTrigger' id='".$currentid."_trigger'>".$currenttitle."</div></div>";
-		}
+		$currentid = strtolower( preg_replace( "/[^A-Za-z0-9]/", "", $currenttitle ) );
+		if( $currenttitle != '' ) {
+		
+			$finaloutput = $finaloutput . "
+				<div class='detailBoxTrigger-container'>
+					<div class='detailBoxTrigger' id='" . $currentid . "_trigger'>" . $currenttitle . "
+					</div>
+				</div>";
+		
+		}	//end if( $currenttitle != '' )
 		$i++;
-	}
+	
+	}	//end while( $i <= 10 )
 	//close left side and open right side divs; also add mobile interface elements
-	$finaloutput = $finaloutput."</div><div class='detailBox-right'><div class='detailBox-mobile'><span class='detailBox-mobile-back'>back</span><span class='detailBox-mobile-title'>Title</span></div>";
+	$finaloutput = $finaloutput . "
+		</div>
+			<div class='detailBox-right'>
+				<div class='detailBox-mobile'>
+					<span class='detailBox-mobile-back'>back</span>
+					<span class='detailBox-mobile-title'>Title</span>
+				</div>";
 	//loop creates content panels
 	$i = 1;
-	while ($i <= 10) {
-		$currentid = 'detailtitle'.$i;
+	while( $i <= 10 ) {
+	
+		$currentid = 'detailtitle' . $i;
 		$currentid = $atts[$currentid];
-		$currentid = strtolower(preg_replace("/[^A-Za-z0-9]/", "", $currentid));
-		$currentcontent = 'detailcontent'.$i;
-		$currentcontent = rawurldecode(base64_decode(strip_tags($atts[$currentcontent])));
-		if ($currentcontent != '') {
-			$finaloutput = $finaloutput."<div class='detailBox-detail' id='".$currentid."'>".$currentcontent."</div>";
-		}
+		$currentid = strtolower( preg_replace( "/[^A-Za-z0-9]/", "", $currentid ) );
+		$currentcontent = 'detailcontent' . $i;
+		$currentcontent = rawurldecode( base64_decode( strip_tags( $atts[$currentcontent] ) ) );
+		if( $currentcontent != '' ) {
+		
+			$finaloutput = $finaloutput . "
+				<div class='detailBox-detail' id='" . $currentid . "'>
+					" . $currentcontent . "
+				</div>";
+		
+		}	//end if( $currentcontent != '' )
 		$i++;
-	}
+	
+	}	//end while( $i <= 10 )
 	//close right and container divs
-	$finaloutput = $finaloutput."</div></div>";
+	$finaloutput = $finaloutput."
+		</div>
+	</div>";
 	return $finaloutput;
-}
+
+}	//end detail_box( $atts, $content = null )
+
+add_shortcode( 'detailbox', 'detail_box' );
+
+
+
 
 /*** Custom Visual Composer Mappings ***/
-if (function_exists('vc_map')) { //check for vc_map function before mapping buttons
+if( function_exists( 'vc_map' ) ) { //check for vc_map function before mapping buttons
+
 	vc_map( array(
 	   "name" => __("Repair Status Checker"),
 	   "base" => "repairstatus",
@@ -186,6 +208,7 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 	   "icon" => "icon-wpb-repairstatus",
 	   "category" => __('Content'),
 	) );
+	//end vc_map Repair Status Checker
 
 	vc_map( array(
 	   "name" => __("Sortable Table"),
@@ -296,7 +319,8 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 		  )
 		)
 	)	);
-
+	//end vc_map Sortable Table
+	
 
 	vc_map( array(
 	   "name" => __("Drawer"),
@@ -359,7 +383,7 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 	) 
 		)
 	);
-
+	//end vc_map Drawer
 
 	vc_map( array(
 	   "name" => __("Detail Box"),
@@ -571,7 +595,9 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 	) 
 		)
 	);
-
+	//end vc_map Detail Box
+	
+	
 	vc_map( array(
 	   "name" => __("Testimonial"),
 	   "base" => "tekserve-testimonial",
@@ -601,8 +627,11 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 			  )
 		)
 	)	);
+	//end vc_map Testimonial
 	
-		vc_map( array(
+	
+	
+	vc_map( array(
 	   "name" => __("Case Study"),
 	   "base" => "tekserve-case-study",
 	   "class" => "",
@@ -631,6 +660,8 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 			  )
 		)
 	)	);
+	//end vc_map Case Study
+	
 
 	vc_map( array(
 	   "name" => __("Single Post"),
@@ -671,6 +702,8 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 			)
 		)
 	)	);
+	//end vc_map Single Post
+	
 
 	vc_map( array(
 	   "name" => __("Widget"),
@@ -691,18 +724,22 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 			),
 		)
 	)	);
+	//end vc_map Widget
 	
-	if (function_exists('vc_map')) {	
-		vc_map( array(
-		   "name" => __("Directions To Tekserve"),
-		   "base" => "get_to_tekserve",
-		   "class" => "",
-		   "show_settings_on_create" => false,
-		   "icon" => "icon-wpb-map",
-		   "category" => __('Content'),
-		) );
-		
-		vc_map( array(
+	
+
+	vc_map( array(
+	   "name" => __("Directions To Tekserve"),
+	   "base" => "get_to_tekserve",
+	   "class" => "",
+	   "show_settings_on_create" => false,
+	   "icon" => "icon-wpb-map",
+	   "category" => __('Content'),
+	) );
+	//end vc_map Directions To Tekserve
+	
+	
+	vc_map( array(
 	   "name" => __("Drawer with Directions to Tekserve"),
 	   "base" => "get_to_tekserve_drawer",
 	   "class" => "",
@@ -710,32 +747,39 @@ if (function_exists('vc_map')) { //check for vc_map function before mapping butt
 	   "icon" => "icon-wpb-map-drawer",
 	   "category" => __('Content')
 	) );
-	}
-}
+	//end vc_map Drawer with Directions to Tekserve
 
-// Remove unneccesary default buttons from visual editor
-if (function_exists('vc_remove_element')) {
-	vc_remove_element("vc_facebook");
-	vc_remove_element("vc_tweetmeme");
-	vc_remove_element("vc_googleplus");
-	vc_remove_element("vc_pinterest");
-	vc_remove_element("vc_toggle");
-	vc_remove_element("vc_tour");
-	vc_remove_element("vc_posts_slider");
-	vc_remove_element("vc_widget_sidebar");
-	vc_remove_element("vc_button");
-	vc_remove_element("vc_cta_button");
-	vc_remove_element("vc_flickr");
-	vc_remove_element("vc_pie");
-	vc_remove_element("vc_wp_recentcomments");
-	vc_remove_element("vc_wp_pages");
-	vc_remove_element("vc_wp_custommenu");
-	vc_remove_element("vc_wp_text");
-	vc_remove_element("vc_wp_links");
-	vc_remove_element("vc_wp_rss");
-	vc_remove_element("vc_progress_bar");
-	vc_remove_element("vc_wp_search");
-	vc_remove_element("vc_wp_meta");
-	vc_remove_element("vc_wp_calendar");
-	vc_remove_element("vc_wp_posts");
-}
+}	//end if( function_exists( 'vc_map' ) )
+
+
+
+
+
+/*** Remove unneccesary default buttons from visual editor ***/
+
+if( function_exists( 'vc_remove_element' ) ) {
+	vc_remove_element( "vc_facebook" );
+	vc_remove_element( "vc_tweetmeme" );
+	vc_remove_element( "vc_googleplus" );
+	vc_remove_element( "vc_pinterest" );
+	vc_remove_element( "vc_toggle" );
+	vc_remove_element( "vc_tour" );
+	vc_remove_element( "vc_posts_slider" );
+	vc_remove_element( "vc_widget_sidebar" );
+	vc_remove_element( "vc_button" );
+	vc_remove_element( "vc_cta_button" );
+	vc_remove_element( "vc_flickr" );
+	vc_remove_element( "vc_pie" );
+	vc_remove_element( "vc_wp_recentcomments" );
+	vc_remove_element( "vc_wp_pages" );
+	vc_remove_element( "vc_wp_custommenu" );
+	vc_remove_element( "vc_wp_text" );
+	vc_remove_element( "vc_wp_links" );
+	vc_remove_element( "vc_wp_rss" );
+	vc_remove_element( "vc_progress_bar" );
+	vc_remove_element( "vc_wp_search" );
+	vc_remove_element( "vc_wp_meta" );
+	vc_remove_element( "vc_wp_calendar" );
+	vc_remove_element( "vc_wp_posts" );
+
+}	//end if( function_exists( 'vc_remove_element' ) )
